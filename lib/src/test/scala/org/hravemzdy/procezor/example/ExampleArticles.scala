@@ -288,4 +288,3 @@ object IncomeNettoArtSpec {
     val CONCEPT_CODE = ExampleConceptConst.CONCEPT_INCOME_NETTO
 }
 
-
