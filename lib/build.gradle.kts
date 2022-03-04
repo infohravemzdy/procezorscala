@@ -41,7 +41,7 @@ dependencies {
     testRuntimeOnly("org.scala-lang.modules:scala-xml_2.13:1.2.0")
 
     // legalios library
-    api("org.hravemzdy.legalios:scala-legalios:0.0.8")
+    api("org.hravemzdy.legalios:scala-legalios:0.22.2")
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api("org.apache.commons:commons-math3:3.6.1")
