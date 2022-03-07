@@ -8,6 +8,7 @@ import org.hravemzdy.procezor.example.ExampleConceptConst
 import org.hravemzdy.procezor.example.ExampleTermTarget
 import org.hravemzdy.procezor.example.ServiceExample
 import org.hravemzdy.procezor.interfaces.ITermTarget
+import org.hravemzdy.procezor.interfaces.TermTargetTypes.ITermTargetList
 import org.hravemzdy.procezor.service.types.{ArticleCode, ConceptCode, ContractCode, MonthCode, PositionCode, VariantCode}
 import org.junit.runner.RunWith
 import org.scalatest.funspec.AnyFunSpec
@@ -15,7 +16,7 @@ import org.scalatestplus.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class ServiceProcezorExampleWithSalaryHomeOfficeTest extends AnyFunSpec {
-    def getTargetsFromDb(period: IPeriod): Array[ITermTarget] = {
+    def getTargetsFromDb(period: IPeriod): ITermTargetList = {
         val  CONTRACT_CODE = 0
         val  POSITION_CODE = 0
 
@@ -94,7 +95,7 @@ class ServiceProcezorExampleWithSalaryHomeOfficeTest extends AnyFunSpec {
         }
         val restArticles = restService.filter(x => x.isRight).map(x => (x.map(a => a.article.value).getOrElse(0)))
         it("get result should return array of articles") {
-            assert(testArticles.corresponds(restArticles)((x,y) => x==y),
+            assert(restArticles.corresponds(testArticles)((x,y) => x==y),
             "Error getting results same order array - get result was failed"
             )
         }

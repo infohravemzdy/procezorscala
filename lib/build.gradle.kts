@@ -17,7 +17,7 @@ plugins {
 }
 
 group = "org.hravemzdy.procezor"
-version = "0.0.1"
+version = "0.22.1"
 
 repositories {
     // Use Maven Central for resolving dependencies.

@@ -1,11 +1,9 @@
 package org.hravemzdy.procezor.example
 
-import org.hravemzdy.procezor.interfaces.IArticleDefine
 import org.hravemzdy.procezor.service.ServiceProcezor
-import org.hravemzdy.procezor.service.types.ArticleDefine
-import org.hravemzdy.procezor.service.types.VersionCode
+import org.hravemzdy.procezor.service.types.{ArticleCode, VersionCode}
 
-class ServiceExample() extends ServiceProcezor(ServiceExample.TEST_VERSION, ServiceExample.TEST_FINAL_DEFS) {
+class ServiceExample() extends ServiceProcezor(ServiceExample.TEST_VERSION, ServiceExample.TEST_CALCS_ARTICLE) {
     override def buildArticleFactory(): Boolean = {
         this.articleFactory = new ExampleArticleFactory()
 
@@ -22,9 +20,8 @@ class ServiceExample() extends ServiceProcezor(ServiceExample.TEST_VERSION, Serv
 object ServiceExample {
     private val TEST_VERSION: VersionCode = VersionCode.get(100)
     private val TEST_FINAL_ARTICLE = ExampleArticleConst.ARTICLE_INCOME_NETTO
-    private val TEST_FINAL_CONCEPT = ExampleConceptConst.CONCEPT_INCOME_NETTO
 
-    private val TEST_FINAL_DEFS: IArticleDefine = ArticleDefine.fromInt(TEST_FINAL_ARTICLE.id, TEST_FINAL_CONCEPT.id)
+    private val TEST_CALCS_ARTICLE: Array[ArticleCode] = Array[ArticleCode](ArticleCode.get(TEST_FINAL_ARTICLE.id))
 
     def getNew(): ServiceExample = {
         val service = new ServiceExample()

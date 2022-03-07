@@ -6,6 +6,7 @@ case class PositionCode(override val value: Int) extends ICodeValue[Int] {
 }
 
 object PositionCode {
-    def getNew(): PositionCode = PositionCode(0)
+    def zero: PositionCode = getNew
+    def getNew: PositionCode = PositionCode(0)
     def get(value: Int): PositionCode = PositionCode(value)
 }

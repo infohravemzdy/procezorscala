@@ -5,9 +5,12 @@ import org.hravemzdy.procezor.service.types.ConceptCode
 trait ITermResult extends ITermSymbol {
     val target: ITermTarget
     val concept: ConceptCode
-    val resultDescr: String
-    val resultBasis: Int
-    val resultValue: Int
-    def conceptDescr():String
+    val spec: Option[IArticleSpec]
+    def conceptDescr(): String
 }
+object TermResultTypes {
+    type ITermResultList = Array[ITermResult]
+}
+
+
 

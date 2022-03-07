@@ -9,11 +9,11 @@ class TermSymbol(override val monthCode: MonthCode,
                  override val article: ArticleCode) extends ITermSymbol {
 
     def this() = this(
-        MonthCode.getNew(),
-        ContractCode.getNew(),
-        PositionCode.getNew(),
-        VariantCode.getNew(),
-        ArticleCode.getNew())
+        MonthCode.getNew,
+        ContractCode.getNew,
+        PositionCode.getNew,
+        VariantCode.getNew,
+        ArticleCode.getNew)
 
     override def articleDescr(): String = {
         s"ArticleCode for ${article.value}"

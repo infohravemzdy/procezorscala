@@ -6,6 +6,7 @@ case class ConceptCode(override val value: Int) extends ISpecCode {
 }
 
 object ConceptCode {
-    def getNew(): ConceptCode = ConceptCode(0)
+    def zero: ConceptCode = getNew
+    def getNew: ConceptCode = ConceptCode(0)
     def get(value: Int): ConceptCode = ConceptCode(value)
 }

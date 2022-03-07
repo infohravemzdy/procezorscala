@@ -6,7 +6,8 @@ case class ArticleCode(override val value: Int) extends ISpecCode {
 }
 
 object ArticleCode {
-    def getNew(): ArticleCode = ArticleCode(0)
+    def zero: ArticleCode = getNew
+    def getNew: ArticleCode = ArticleCode(0)
     def get(value: Int): ArticleCode = ArticleCode(value)
 }
 

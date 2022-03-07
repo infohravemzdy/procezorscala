@@ -2,42 +2,10 @@ package org.hravemzdy.procezor.example
 
 import org.hravemzdy.legalios.interfaces.{IBundleProps, IPeriod}
 import org.hravemzdy.procezor.interfaces.BuilderType.{BuilderResultList, ResultFunc}
-import org.hravemzdy.procezor.interfaces.{IConceptSpec, ITermResult, ITermTarget}
+import org.hravemzdy.procezor.interfaces.{IArticleSpec, IConceptSpec, ITermResult, ITermTarget}
 import org.hravemzdy.procezor.registry.providers.ConceptSpec.constToPathArray
 import org.hravemzdy.procezor.registry.providers.{ConceptSpec, ConceptSpecProvider}
-import org.hravemzdy.procezor.service.types.{ArticleCode, ConceptCode, ContractCode, MonthCode, PositionCode, TermResult, TermTarget, VariantCode, VersionCode}
-
-class ExampleTermTarget(override val monthCode: MonthCode,
-                        override val contract: ContractCode,
-                        override val position: PositionCode,
-                        override val variant: VariantCode,
-                        override val article: ArticleCode,
-                        override val concept: ConceptCode,
-                        override val targetBasis: Int,
-                        override val targetDescr: String) 
-  extends TermTarget(monthCode, contract, position, variant, article, concept, targetBasis, targetDescr) {
-    def this(_month: MonthCode, _contract: ContractCode, _position: PositionCode, _variant: VariantCode, _article: ArticleCode, _concept: ConceptCode) = 
-        this(_month, _contract, _position, _variant, _article, _concept, 0, "")
-
-    override def articleDescr(): String = {
-        ExampleArticleConst.getArticleSymbol(article.value)
-    }
-    override def conceptDescr(): String = {
-        ExampleConceptConst.getConceptSymbol(concept.value)
-    }
-}
-
-class ExampleTermResult(override val target: ITermTarget,
-                             override val resultValue: Int,
-                             override val resultBasis: Int,
-                             override val resultDescr: String) extends TermResult(target, resultValue, resultBasis, resultDescr) {
-    override def articleDescr(): String = {
-        ExampleArticleConst.getArticleSymbol(article.value)
-    }
-    override def conceptDescr(): String = {
-        ExampleConceptConst.getConceptSymbol(concept.value)
-    }
-}
+import org.hravemzdy.procezor.service.types.{ArticleCode, ConceptCode, VersionCode}
 
 class TimeshtWorkingConProv(override val code: ConceptCode) extends ConceptSpecProvider(code) {
     def this() = this(ConceptCode.get(TimeshtWorkingConProv.CONCEPT_CODE.id))
@@ -57,8 +25,8 @@ class TimeshtWorkingConSpec(override val code: ConceptCode, override val path: A
 }
 
 object TimeshtWorkingConSpec {
-    def conceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
-        val resultsValues: ITermResult = new TimeshtWorkingResult(target, 0, 0, ExampleResultConst.DESCRIPTION_EMPTY)
+    def conceptEval(target: ITermTarget, spec: Option[IArticleSpec], period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
+        val resultsValues: ITermResult = new TimeshtWorkingResult(target, spec)
 
         Array(Right(resultsValues))
     }
@@ -86,8 +54,8 @@ object AmountBasisConSpec {
         ExampleArticleConst.ARTICLE_TIMESHT_WORKING.id,
     )
 
-    def conceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
-        val resultsValues: ITermResult = new AmountBasisResult(target, 0, 0, ExampleResultConst.DESCRIPTION_EMPTY)
+    def conceptEval(target: ITermTarget, spec: Option[IArticleSpec], period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
+        val resultsValues: ITermResult = new AmountBasisResult(target, spec)
 
         Array(Right(resultsValues))
     }
@@ -111,8 +79,8 @@ class AmountFixedConSpec(override val code: ConceptCode, override val path: Arra
 }
 
 object AmountFixedConSpec {
-    def conceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
-        val resultsValues: ITermResult = new AmountFixedResult(target, 0, 0, ExampleResultConst.DESCRIPTION_EMPTY)
+    def conceptEval(target: ITermTarget, spec: Option[IArticleSpec], period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
+        val resultsValues: ITermResult = new AmountFixedResult(target, spec)
 
         Array(Right(resultsValues))
     }
@@ -136,8 +104,8 @@ class HealthInsbaseConSpec(override val code: ConceptCode, override val path: Ar
 }
 
 object HealthInsbaseConSpec {
-    def conceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
-        val resultsValues: ITermResult = new HealthInsbaseResult(target, 0, 0, ExampleResultConst.DESCRIPTION_EMPTY)
+    def conceptEval(target: ITermTarget, spec: Option[IArticleSpec], period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
+        val resultsValues: ITermResult = new HealthInsbaseResult(target, spec)
 
         Array(Right(resultsValues))
     }
@@ -161,8 +129,8 @@ class SocialInsbaseConSpec(override val code: ConceptCode, override val path: Ar
 }
 
 object SocialInsbaseConSpec {
-    def conceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
-        val resultsValues: ITermResult = new SocialInsbaseResult(target, 0, 0, ExampleResultConst.DESCRIPTION_EMPTY)
+    def conceptEval(target: ITermTarget, spec: Option[IArticleSpec], period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
+        val resultsValues: ITermResult = new SocialInsbaseResult(target, spec)
 
         Array(Right(resultsValues))
     }
@@ -190,8 +158,8 @@ object HealthInspaymConSpec {
         ExampleArticleConst.ARTICLE_HEALTH_INSBASE.id,
     )
 
-    def conceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
-        val resultsValues: ITermResult = new HealthInspaymResult(target, 0, 0, ExampleResultConst.DESCRIPTION_EMPTY)
+    def conceptEval(target: ITermTarget, spec: Option[IArticleSpec], period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
+        val resultsValues: ITermResult = new HealthInspaymResult(target, spec)
 
         Array(Right(resultsValues))
     }
@@ -219,8 +187,8 @@ object SocialInspaymConSpec {
         ExampleArticleConst.ARTICLE_SOCIAL_INSBASE.id,
     )
 
-    def conceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
-        val resultsValues: ITermResult = new SocialInspaymResult(target, 0, 0, ExampleResultConst.DESCRIPTION_EMPTY)
+    def conceptEval(target: ITermTarget, spec: Option[IArticleSpec], period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
+        val resultsValues: ITermResult = new SocialInspaymResult(target, spec)
 
         Array(Right(resultsValues))
     }
@@ -244,8 +212,8 @@ class TaxingAdvbaseConSpec(override val code: ConceptCode, override val path: Ar
 }
 
 object TaxingAdvbaseConSpec {
-    def conceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
-        val resultsValues: ITermResult = new TaxingAdvbaseResult(target, 0, 0, ExampleResultConst.DESCRIPTION_EMPTY)
+    def conceptEval(target: ITermTarget, spec: Option[IArticleSpec], period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
+        val resultsValues: ITermResult = new TaxingAdvbaseResult(target, spec)
 
         Array(Right(resultsValues))
     }
@@ -273,8 +241,8 @@ object TaxingAdvpaymConSpec {
         ExampleArticleConst.ARTICLE_TAXING_ADVBASE.id,
     )
 
-    def conceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
-        val resultsValues: ITermResult = new TaxingAdvpaymResult(target, 0, 0, ExampleResultConst.DESCRIPTION_EMPTY)
+    def conceptEval(target: ITermTarget, spec: Option[IArticleSpec], period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
+        val resultsValues: ITermResult = new TaxingAdvpaymResult(target, spec)
 
         Array(Right(resultsValues))
     }
@@ -298,8 +266,8 @@ class IncomeGrossConSpec(override val code: ConceptCode, override val path: Arra
 }
 
 object IncomeGrossConSpec {
-    def conceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
-        val resultsValues: ITermResult = new IncomeGrossResult(target, 0, 0, ExampleResultConst.DESCRIPTION_EMPTY)
+    def conceptEval(target: ITermTarget, spec: Option[IArticleSpec], period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
+        val resultsValues: ITermResult = new IncomeGrossResult(target, spec)
 
         Array(Right(resultsValues))
     }
@@ -330,8 +298,8 @@ object IncomeNettoConSpec {
         ExampleArticleConst.ARTICLE_TAXING_ADVPAYM.id,
     )
 
-    def conceptEval(target: ITermTarget, period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
-        val resultsValues: ITermResult = new IncomeNettoResult(target, 0, 0, ExampleResultConst.DESCRIPTION_EMPTY)
+    def conceptEval(target: ITermTarget, spec: Option[IArticleSpec], period: IPeriod, ruleset: IBundleProps, results: BuilderResultList): BuilderResultList = {
+        val resultsValues: ITermResult = new IncomeNettoResult(target, spec)
 
         Array(Right(resultsValues))
     }
