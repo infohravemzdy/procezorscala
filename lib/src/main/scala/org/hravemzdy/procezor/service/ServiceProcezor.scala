@@ -64,6 +64,9 @@ abstract class ServiceProcezor(override val version: VersionCode, _calcArticles:
             initResult = builder.initWithPeriod(version, period, articleFactory, conceptFactory)
         }
 
+        if (initResult == false) {
+            println(s"Period: ${period.code}, init with period failed")
+        }
         return initResult
     }
     override def buildFactories(): Boolean = {
@@ -71,6 +74,9 @@ abstract class ServiceProcezor(override val version: VersionCode, _calcArticles:
 
         val conceptFactorySuccess: Boolean = buildConceptFactory()
 
+        if (!(articleFactorySuccess && conceptFactorySuccess)) {
+            println(s"ServiceProcezor::BuildFactories(): Version: ${version}, build factories failed")
+        }
         return articleFactorySuccess && conceptFactorySuccess
     }
     override def getArticleSpec(code: ArticleCode, period: IPeriod, version: VersionCode): IArticleSpec = {

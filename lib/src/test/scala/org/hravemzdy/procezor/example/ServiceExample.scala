@@ -25,7 +25,10 @@ object ServiceExample {
 
     def getNew(): ServiceExample = {
         val service = new ServiceExample()
-        service.buildFactories()
+        val buildSuccess = service.buildFactories()
+        if (buildSuccess == false) {
+            println(s"Version: ${service.version}, build factories failed")
+        }
         service
     }
 

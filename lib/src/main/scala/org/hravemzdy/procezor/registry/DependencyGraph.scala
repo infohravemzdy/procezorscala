@@ -138,7 +138,9 @@ object DependencyGraph {
                 }
             })
         }
-        if (index != vertModel.length) {
+        val modelLength = vertModel.length
+        if (index != modelLength) {
+            println(s"CreateTopoModel, build graph failed: ${index}<>${modelLength}")
             return Array[ArticleTerm]()
         }
         articlesOrder
