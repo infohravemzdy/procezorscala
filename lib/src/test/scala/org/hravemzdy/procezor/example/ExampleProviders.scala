@@ -7,6 +7,7 @@ import org.hravemzdy.procezor.registry.providers.ConceptSpec.constToPathArray
 import org.hravemzdy.procezor.registry.providers.{ConceptSpec, ConceptSpecProvider}
 import org.hravemzdy.procezor.service.types.{ArticleCode, ConceptCode, VersionCode}
 
+// TimeshtWorking		TIMESHT_WORKING
 class TimeshtWorkingConProv(override val code: ConceptCode) extends ConceptSpecProvider(code) {
     def this() = this(ConceptCode.get(TimeshtWorkingConProv.CONCEPT_CODE.id))
 
@@ -32,6 +33,7 @@ object TimeshtWorkingConSpec {
     }
 }
 
+// AmountBasis		AMOUNT_BASIS
 class AmountBasisConProv(override val code: ConceptCode) extends ConceptSpecProvider(code) {
     def this() = this(ConceptCode.get(AmountBasisConProv.CONCEPT_CODE.id))
 
@@ -61,6 +63,7 @@ object AmountBasisConSpec {
     }
 }
 
+// AmountFixed		AMOUNT_FIXED
 class AmountFixedConProv(override val code: ConceptCode) extends ConceptSpecProvider(code) {
     def this() = this(ConceptCode.get(AmountFixedConProv.CONCEPT_CODE.id))
 
@@ -86,6 +89,7 @@ object AmountFixedConSpec {
     }
 }
 
+// HealthInsbase		HEALTH_INSBASE
 class HealthInsbaseConProv(override val code: ConceptCode) extends ConceptSpecProvider(code) {
     def this() = this(ConceptCode.get(HealthInsbaseConProv.CONCEPT_CODE.id))
 
@@ -111,6 +115,7 @@ object HealthInsbaseConSpec {
     }
 }
 
+// SocialInsbase		SOCIAL_INSBASE
 class SocialInsbaseConProv(override val code: ConceptCode) extends ConceptSpecProvider(code) {
     def this() = this(ConceptCode.get(SocialInsbaseConProv.CONCEPT_CODE.id))
 
@@ -136,6 +141,7 @@ object SocialInsbaseConSpec {
     }
 }
 
+// HealthInspaym		HEALTH_INSPAYM
 class HealthInspaymConProv(override val code: ConceptCode) extends ConceptSpecProvider(code) {
     def this() = this(ConceptCode.get(HealthInspaymConProv.CONCEPT_CODE.id))
 
@@ -165,6 +171,7 @@ object HealthInspaymConSpec {
     }
 }
 
+// SocialInspaym		SOCIAL_INSPAYM
 class SocialInspaymConProv(override val code: ConceptCode) extends ConceptSpecProvider(code) {
     def this() = this(ConceptCode.get(SocialInspaymConProv.CONCEPT_CODE.id))
 
@@ -194,6 +201,7 @@ object SocialInspaymConSpec {
     }
 }
 
+// TaxingAdvbase		TAXING_ADVBASE
 class TaxingAdvbaseConProv(override val code: ConceptCode) extends ConceptSpecProvider(code) {
     def this() = this(ConceptCode.get(TaxingAdvbaseConProv.CONCEPT_CODE.id))
 
@@ -219,6 +227,7 @@ object TaxingAdvbaseConSpec {
     }
 }
 
+// TaxingAdvpaym		TAXING_ADVPAYM
 class TaxingAdvpaymConProv(override val code: ConceptCode) extends ConceptSpecProvider(code) {
     def this() = this(ConceptCode.get(TaxingAdvpaymConProv.CONCEPT_CODE.id))
 
@@ -248,6 +257,7 @@ object TaxingAdvpaymConSpec {
     }
 }
 
+// IncomeGross		INCOME_GROSS
 class IncomeGrossConProv(override val code: ConceptCode) extends ConceptSpecProvider(code) {
     def this() = this(ConceptCode.get(IncomeGrossConProv.CONCEPT_CODE.id))
 
@@ -273,6 +283,7 @@ object IncomeGrossConSpec {
     }
 }
 
+// IncomeNetto		INCOME_NETTO
 class IncomeNettoConProv(override val code: ConceptCode) extends ConceptSpecProvider(code) {
     def this() = this(ConceptCode.get(IncomeNettoConProv.CONCEPT_CODE.id))
 
